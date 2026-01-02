@@ -72,7 +72,6 @@ import {
   useApiMutation,
   useApiQuery,
 } from "@/hooks/genericoCall/genericoCallHook";
-import { validateDpiNitEither } from "./helpers/regex.regex";
 
 // ================= Types =================
 interface ClienteResponse {
@@ -353,11 +352,11 @@ export default function ClientesPageRefactor() {
 
   const onCreateSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const { ok, msg } = validateDpiNitEither(formData.dpi, formData.nit);
-    if (!ok) {
-      toast.warning(msg);
-      return;
-    }
+    // const { ok, msg } = validateDpiNitEither(formData.dpi, formData.nit);
+    // if (!ok) {
+    //   toast.warning(msg);
+    //   return;
+    // }
     setOpenConfirmCreate(true);
   };
 
@@ -386,11 +385,11 @@ export default function ClientesPageRefactor() {
       toast.warning("El nombre es requerido");
       return;
     }
-    const { ok, msg } = validateDpiNitEither(editData.dpi, editData.nit);
-    if (!ok) {
-      toast.warning(msg);
-      return;
-    }
+    // const { ok, msg } = validateDpiNitEither(editData.dpi, editData.nit);
+    // if (!ok) {
+    //   toast.warning(msg);
+    //   return;
+    // }
     await actualizarCliente.mutateAsync(editData);
     setOpenConfirmSave(false);
   };
@@ -466,9 +465,9 @@ export default function ClientesPageRefactor() {
                       placeholder="13 dígitos"
                       inputMode="numeric"
                     />
+                    {/* CAMBIAR ESTE TEXTO */}
                     <p className="text-xs text-muted-foreground flex items-center gap-1 mt-1">
-                      <BadgeHelp className="h-3 w-3" /> Si no tiene DPI, ingrese
-                      NIT.
+                      <BadgeHelp className="h-3 w-3" /> Opcional (o ingrese NIT)
                     </p>
                   </div>
                   <div className="space-y-1">
@@ -480,6 +479,10 @@ export default function ClientesPageRefactor() {
                       onChange={onCreateChange}
                       placeholder="7–11 dígitos (+K opcional)"
                     />
+
+                    <p className="text-xs text-muted-foreground flex items-center gap-1 mt-1">
+                      <BadgeHelp className="h-3 w-3" /> Opcional
+                    </p>
                   </div>
                 </div>
 
