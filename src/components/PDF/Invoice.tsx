@@ -10,7 +10,7 @@ import localizedFormat from "dayjs/plugin/localizedFormat";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { User } from "lucide-react";
 
-import logo from "@/assets/AGROOCCIDENTE-LOGO-PNG.png";
+import logo from "@/assets/NOVAPOSPNG.png";
 import type { VentaHistorialPDF } from "@/Types/PDF/VentaHistorialPDF";
 import { formatearMoneda } from "@/Pages/Requisicion/PDF/Pdf";
 import { useApiQuery } from "@/hooks/genericoCall/genericoCallHook";
