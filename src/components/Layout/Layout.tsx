@@ -2,9 +2,9 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "./app-sidebar";
 //================================================================>
 import { useEffect, useState } from "react";
-import { User, LogOut, AtSign } from "lucide-react";
+import { User, LogOut, AtSign, Monitor, LayoutDashboard } from "lucide-react";
 
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import { ModeToggle } from "../mode-toggle";
 
 import {
@@ -46,6 +46,10 @@ interface LayoutProps {
 
 export default function Layout2({ children }: LayoutProps) {
   const queryClient = useQueryClient();
+  const location = useLocation();
+  const isCrmLocation = location.pathname.startsWith("/crm");
+  const erpLink = import.meta.env.VITE_ERP_LINK;
+  const crmLink = import.meta.env.VITE_CRM_LINK;
   // Store POS (Zustand) setters
   const setUserNombre = useStore((state) => state.setUserNombre);
   const setUserCorreo = useStore((state) => state.setUserCorreo);
@@ -193,6 +197,27 @@ export default function Layout2({ children }: LayoutProps) {
 
             <div className="flex items-center space-x-2">
               <ModeToggle />
+              {/* Botón para cambiar entre CRM / POS */}
+              <Button
+                asChild
+                size="sm"
+                variant="outline"
+                className="hidden sm:inline-flex items-center gap-2  transition-colors"
+              >
+                <Link to={isCrmLocation ? erpLink : crmLink}>
+                  {isCrmLocation ? (
+                    <>
+                      <Monitor className="h-4 w-4" />
+                      <span>POS</span>
+                    </>
+                  ) : (
+                    <>
+                      <LayoutDashboard className="h-4 w-4" />
+                      <span>CRM</span>
+                    </>
+                  )}
+                </Link>
+              </Button>
 
               <NotificationsSheet
                 notifications={secureNotifications}
