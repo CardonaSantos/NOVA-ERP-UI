@@ -202,9 +202,9 @@ export default function Layout2({ children }: LayoutProps) {
                 asChild
                 size="sm"
                 variant="outline"
-                className="hidden sm:inline-flex items-center gap-2  transition-colors"
+                className="hidden sm:inline-flex items-center gap-2 transition-colors"
               >
-                <Link to={isCrmLocation ? erpLink : crmLink}>
+                <a href={isCrmLocation ? erpLink : crmLink}>
                   {isCrmLocation ? (
                     <>
                       <Monitor className="h-4 w-4" />
@@ -216,7 +216,7 @@ export default function Layout2({ children }: LayoutProps) {
                       <span>CRM</span>
                     </>
                   )}
-                </Link>
+                </a>
               </Button>
 
               <NotificationsSheet
