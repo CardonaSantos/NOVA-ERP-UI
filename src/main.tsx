@@ -7,7 +7,7 @@ import { GoogleMapsProvider } from "./Crm/CrmRutas/CrmRutasCobro/GoogleMapsProvi
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { QueryProvider } from "./Server/QueryProvider.tsx";
 import { SocketProvider } from "./Web/realtime/SocketProvider.tsx";
-const VITE_WS_URL = "http://localhost:3000";
+const VITE_WS_URL = import.meta.env.VITE_WS_URL;
 const VITE_WS_NAMESPACE = "/legacy";
 const VITE_WS_PATH = "/socket.io";
 
