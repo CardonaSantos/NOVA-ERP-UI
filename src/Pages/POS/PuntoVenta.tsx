@@ -59,7 +59,7 @@ import {
   CategoriaWithCount,
   CATS_LIST_QK,
 } from "../Categorias/CategoriasMainPage";
-import { validateDpiNitEither } from "../Customers/helpers/regex.regex";
+// import { validateDpiNitEither } from "../Customers/helpers/regex.regex";
 
 // =================== Dayjs ===================
 dayjs.extend(localizedFormat);
@@ -603,22 +603,21 @@ export default function PuntoVenta() {
     setIsDisableButton(true);
 
     if (!selectedCustomerID?.id) {
-      const cliente = {
-        nombre: nombre?.trim(),
-        apellidos: apellidos?.trim(),
-        direccion: direccion?.trim(),
-        dpi: dpi?.trim(),
-        nit: nit?.trim(),
-      };
-
-      if (cliente.nombre) {
-        const res = validateDpiNitEither(cliente.dpi, cliente.nit);
-        if (!res.ok) {
-          toast.warning(res.msg || "DPI o NIT no válidos");
-          setIsDisableButton(false);
-          return;
-        }
-      }
+      // const cliente = {
+      //   nombre: nombre?.trim(),
+      //   apellidos: apellidos?.trim(),
+      //   direccion: direccion?.trim(),
+      //   dpi: dpi?.trim(),
+      //   nit: nit?.trim(),
+      // };
+      // if (cliente.nombre) {
+      //   const res = validateDpiNitEither(cliente.dpi, cliente.nit);
+      //   if (!res.ok) {
+      //     toast.warning(res.msg || "DPI o NIT no válidos");
+      //     setIsDisableButton(false);
+      //     return;
+      //   }
+      // }
     }
 
     const saleData = {
@@ -650,8 +649,7 @@ export default function PuntoVenta() {
 
     console.log("EL payload es: ", saleData);
 
-    const isCustomerInfoProvided =
-      !!saleData.nombre && !!saleData.telefono && !!saleData.direccion;
+    const isCustomerInfoProvided = !!saleData.nombre && !!saleData.telefono;
 
     if (
       saleData.monto > 1000 &&
