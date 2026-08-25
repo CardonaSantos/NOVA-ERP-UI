@@ -115,7 +115,7 @@ export default function Inventario({
     },
     [resetDeleteState],
   );
-
+  // COMENTARIO PARA COMITEAR
   return (
     <>
       <div className="mb-3 grid gap-3 lg:grid-cols-[1fr_auto] items-start">
