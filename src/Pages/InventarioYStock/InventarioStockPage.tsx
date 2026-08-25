@@ -50,14 +50,16 @@ function setOrDeleteParam(
   key: string,
   value: string | number | null | undefined,
 ) {
-  const parsedValue = String(value ?? "").trim();
+  const rawValue = String(value ?? "");
 
-  if (!parsedValue) {
+  // Elimina el parámetro si está vacío o contiene solamente espacios.
+  if (!rawValue.trim()) {
     params.delete(key);
     return;
   }
 
-  params.set(key, parsedValue);
+  // Conserva el valor original mientras el usuario escribe.
+  params.set(key, rawValue);
 }
 
 function setArrayParam(
